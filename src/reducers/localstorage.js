@@ -24,14 +24,12 @@ export var datas = [
     day:"September 1"
   }
 ]
-
 export function getRecByDate(val){
   var recByDate=datas.find(function(rec){
     return rec.day===val
   })
   return recByDate;
 }
-
 export function getBuzy(day){
   var busy = returnObj.find(elem=>{
       return elem.day===day
@@ -39,6 +37,9 @@ export function getBuzy(day){
   return busy
 }
 
+export function save(name, content){
+
+}
 
 
 

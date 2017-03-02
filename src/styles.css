@@ -197,6 +197,10 @@ body {
 .edit-temp.red{
   color:red;
 }
+.edit-temp.red.hide{
+  visibility: hidden;
+}
+
 .edit-input{
   margin-top: 10px;
   border-radius: 2px;
@@ -213,7 +217,7 @@ body {
   width: 100%;
   margin-bottom: 24px;
 }
-.edit-input.color{
+.edit-input.red{
   border-color: red;
 }
 .edit-button{
@@ -248,4 +252,5 @@ body {
   background: none;
   width: 82px;
   margin-right: 7px;
+  height: 23px;
 }
