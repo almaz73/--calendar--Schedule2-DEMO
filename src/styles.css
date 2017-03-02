@@ -46,6 +46,9 @@ body {
     border: 0;
     background: #f6cf31;
     cursor: pointer;
+    text-align: center;
+    font-size: 12.5px;
+    line-height: 27px;
 }
 .calendar-title{
   margin: 0 auto;
@@ -110,27 +113,36 @@ body {
 .calendar-table .black{
   color:black;
 }
+.calendar-table .dot{
+  position: absolute;
+  /*top:23px;*/
+  /*left:12px;*/
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+  background: green;
 
+  /*text-align: center;*/
+  margin-left: 4px;
+  margin-top: 30px;
+}
 .meet-title{
   margin-top:32px;
   margin-left: 30px;
   font-size: 18px;
   color:#555;
 }
-
 .meet-content{
   margin-top:38px;
   margin-left: 30px;
   font-size: 14px;
   position: relative;
 }
-
 .meet-text{
   float: left;
   clear: both;
   width: 100%;
 }
-
 .meet-author{
   clear: both;
   float: left;
@@ -141,7 +153,6 @@ body {
   margin-top: 9px;
   margin-bottom: 30px;
 }
-
 .meet button{
   position: absolute;
   width: 20px;
@@ -151,8 +162,6 @@ body {
   box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
   visibility: hidden;
 }
-
-
 .meet-add{
   right:73px;
   background: url('./images/edit.png');
@@ -169,7 +178,74 @@ body {
 .meet-one:hover .meet-delete, .meet-one:hover .meet-add{
   visibility: visible;
 }
-
 .clearfix {
     clear: both;
+}
+
+.edit{
+  margin:29px 31px;
+  margin-right: 45px;
+}
+.edit-title{
+  font-size: 18px;
+  margin-bottom: 39px;
+}
+.edit-temp{
+  margin-top:3px;
+  font-size: 12px;
+}
+.edit-temp.red{
+  color:red;
+}
+.edit-input{
+  margin-top: 10px;
+  border-radius: 2px;
+  height: 22px;
+  width: 185px;
+  border:1px solid #999;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.edit-input-area{
+  line-height: 22px;
+  font-size: 12px;
+  height: 55px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.edit-input.color{
+  border-color: red;
+}
+.edit-button{
+  background: #f6cf31;
+  width: 75px;
+  height: 25px;
+  border-radius: 25px;
+  text-align: center;
+  line-height: 25px;
+  cursor:pointer;
+  margin: 2px;
+  font-size: 14px;
+
+}
+.edit-button.close{
+  position: absolute;
+  font-size: 24px;
+  top:23px;
+  right: 7px;
+  background: none;
+}
+.edit-button.save{
+  float: right;
+  color:white;
+  width: 65px;
+  margin-right: -14px;
+}
+.edit-button.cansel{
+  float: right;
+  color: #f6cf31;
+  border: 1px solid #f6cf31;
+  background: none;
+  width: 82px;
+  margin-right: 7px;
 }

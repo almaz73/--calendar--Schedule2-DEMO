@@ -1,6 +1,5 @@
 var moment = require('moment');
 
-
 export var datas = [
   {
     meet:[
@@ -26,15 +25,19 @@ export var datas = [
   }
 ]
 
+export function getRecByDate(val){
+  var recByDate=datas.find(function(rec){
+    return rec.day===val
+  })
+  return recByDate;
+}
 
-
-// export function getRecByDate(val){
-//   var dateFind = new Date("2017-02-"+val);
-//   var recByDate = initialState.filter(function(rec){
-//     return Math.abs(new Date(rec.date).getTime()-dateFind.getTime())-86400000<0
-//   })
-//   return recByDate;
-// }
+export function getBuzy(day){
+  var busy = returnObj.find(elem=>{
+      return elem.day===day
+  })
+  return busy
+}
 
 
 

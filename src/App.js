@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import Calendar from './Calendar';
 import Meet from './Meet';
+import Editor from './Editor';
 
 
 class App extends Component {
+
+
   render() {
+
+    var editMode = this.props.editMode;
+
     return (
         <div className="layout">
          <div className="col1"></div>
@@ -12,12 +19,22 @@ class App extends Component {
           <Calendar/>
          </div>
          <div className="col3">
-          <button className="col3-button">CREATE</button>
-          <Meet />
+
+          {editMode && <Editor/>}
+          {!editMode && <Meet/>}
          </div>
         </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  state=>({
+    editMode:state.editMode
+  }),
+  dispatch=>({
+    // changeMode: (val)=>{
+    //   dispatch({type:"TOGGLE_EDIT"})
+    // }
+  })
+)(App);

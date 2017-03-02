@@ -10,8 +10,8 @@ class Calendar extends Component {
     var
       self=this,
       days=this.props.days,
-      black;
-
+      black,
+      dayWithMeet=[];
 
     return (
       <div className="calendar">
@@ -24,7 +24,10 @@ class Calendar extends Component {
         <hr />
         <div className="calendar-table">
         {
-          days.map((day, index)=>{
+          days.map((elem, index)=>{
+            var day = elem.day;
+            var busy = elem.busy;
+
             if(day.replace(/\D+/g,"")==="1"){
               black=!black?true:false;
             }
@@ -36,7 +39,9 @@ class Calendar extends Component {
                 title={day}
                 onClick={self.onChoiseDate.bind(self, day)}
               >
+                {busy?<span className="dot"></span>:""}
                 {day.replace(/\D+/g,"")}
+
               </div>
             )
           })
@@ -54,6 +59,7 @@ export default connect(
   }),
   dispatch=>({
     onGetDay: (val)=>{
+      dispatch({type:"TOGGLE_EDIT", mode:false})
       dispatch({type:"GET_DAY", payload:val})
     }
   })

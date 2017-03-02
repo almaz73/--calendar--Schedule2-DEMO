@@ -8,16 +8,16 @@ class Meet extends Component {
       days=this.props.meetDate.day,
       list="Nothing planned";
 
-
-console.log("#43434=", this.props.meetDate)
-
-
     return (
       <div className="meet">
+        <div
+          className="col3-button"
+          onClick={this.props.changeMode}
+        >CREATE</div>
         <div className="meet-title">{days}</div>
-
         <div className="meet-content">
           {
+            this.props.meetDate.meet &&
             this.props.meetDate.meet.map((meet, index)=>{
               return(
                 <div className="meet-one" key={index}>
@@ -35,15 +35,8 @@ console.log("#43434=", this.props.meetDate)
             })
           }
 
-
-
-
-
-
-          {this.props.meetDate.meet.length===0 && list}
+          {!this.props.meetDate.meet && list}
         </div>
-
-
       </div>
     );
   }
@@ -56,8 +49,8 @@ export default connect(
     meetDate:state.meet
   }),
   dispatch=>({
-    // onAdd: (val)=>{
-    //   dispatch({type:"ADD_TEXT", text:val})
-    // }
+    changeMode: (val)=>{
+      dispatch({type:"TOGGLE_EDIT"})
+    }
   })
 )(Meet);
