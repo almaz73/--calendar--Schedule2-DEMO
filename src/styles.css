@@ -127,9 +127,9 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 4px;
-  background: green;
+  background: #0b0;
   margin-left: 1px;
-  margin-top: -13px;
+  margin-top: -5px;
 }
 .circle{
   position: absolute;

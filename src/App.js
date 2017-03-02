@@ -33,6 +33,9 @@ export default connect(
     editMode:state.editMode
   }),
   dispatch=>({
+    // onload:()=>{
+    //   dispatch({type:"UPDATE_DATE", payload:''})
+    // }
     // changeMode: (val)=>{
     //   dispatch({type:"TOGGLE_EDIT"})
     // }

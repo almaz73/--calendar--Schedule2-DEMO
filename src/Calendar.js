@@ -39,9 +39,8 @@ class Calendar extends Component {
             }
 
             return(
-              <div>
+              <div key={index}>
               <div
-                key={index}
                 className={black?"black":""}
                 title={day}
                 onClick={self.onChoiseDate.bind(self, day)}

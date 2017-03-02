@@ -1,4 +1,4 @@
-import * as bd from './localstorage'
+import * as bd from './localstorage';
 
 var initialState = bd.datas[0]
 
@@ -12,11 +12,15 @@ export default function myReducer(state=initialState, action){
 	}
 
 	if(action.type==="SAVE_MEET"){
-		console.log(" val =SAVE_MEETSAVE_MEETSAVE_MEET action=",action);
-    // state = bd.getRecByDate(action.payload);
+    state = bd.save(action.name, action.content, action.day);
+
+
+
+
 		// return {
     //   ...state,
-    //   day:[action.payload]
+		// 	editMode:false,
+    //   day:[action.day]
 		// }
 	}
 

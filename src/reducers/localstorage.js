@@ -23,7 +23,12 @@ export var datas = [
     ],
     day:"September 1"
   }
-]
+];
+
+var returnObj = JSON.parse(localStorage.getItem("Meetings")) // из локалхоста
+if (returnObj){datas = returnObj}
+
+
 export function getRecByDate(val){
   var recByDate=datas.find(function(rec){
     return rec.day===val
@@ -31,33 +36,22 @@ export function getRecByDate(val){
   return recByDate;
 }
 export function getBuzy(day){
-  var busy = returnObj.find(elem=>{
+  var busy = datas.find(elem=>{
       return elem.day===day
   })
   return busy
 }
 
-export function save(name, content){
+export function save(author, text, day){
+  var data = datas.find(elem=> elem.day===day);
+  if (data){
+    data.meet.push({author, text});
+  } else{
+    datas.push({meet:[{author, text}],day})
+  }
+    console.log(" 3 datas = ", datas);
 
+    var serialObj = JSON.stringify(datas);
+    localStorage.setItem('Meetings', serialObj); // сохраняем
+    return datas;
 }
-
-
-
-
-//сериализуем его
-var serialObj = JSON.stringify(datas);
-
-
-//Добавляем или изменяем значение:
-localStorage.setItem('Meetings', serialObj);
-
-
-var returnObj = JSON.parse(localStorage.getItem("Meetings")) //спарсим его обратно объект
-
-
-window.DDD = moment
-// DDD.locale('ru')
-// DDD('01.12.2017 13:00').format('LLLL')
-// DDD('2016-01-12 12:00').add('minutes', 1).format('LLLL')
-
-//DDD().format('dddd,  MMM YYYY')    //"среда, март 2017"

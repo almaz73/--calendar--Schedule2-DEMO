@@ -15,7 +15,11 @@ class Editor extends Component {
     if(this.nameInput.value==="" || this.areaInput.value===""){
       return;
     }
-    this.props.saveMeet(this.nameInput.value, this.areaInput.value)
+    var day = this.props.meetDate.day;
+    if(typeof(this.props.meetDate.day)!=="string"){
+      day=this.props.meetDate.day[0]
+    }
+    this.props.saveMeet(this.nameInput.value, this.areaInput.value, day)
   }
   onCheck(val){
     this.setState({ isRequireName: this.nameInput.value==="" });
@@ -27,6 +31,7 @@ class Editor extends Component {
       requireName ="edit-input ",
       requireNemePar = "edit-temp red ",
       requireArea ="edit-input edit-input-area " ;
+
     requireName+=this.state.isRequireName?'red':'';
     requireArea+=this.state.isRequireArea?'red':'';
     requireNemePar+=this.state.isRequireName?'':'hide';
@@ -34,7 +39,7 @@ class Editor extends Component {
     console.log(" requireName = ", requireName);
     return (
       <form  className="edit">
-        <div  className="edit-title"> New meeting on September 22 </div>
+        <div  className="edit-title"> New meeting on {this.props.meetDate.day[0]}</div>
         <div className="edit-temp">Participant</div>
         <input
           className={requireName}
@@ -62,14 +67,17 @@ class Editor extends Component {
 
 export default connect(
   state=>({
-    // meetDate:state.edit
+    meetDate:state.meet
   }),
   dispatch=>({
     changeMode: (val)=>{
       dispatch({type:"TOGGLE_EDIT"})
     },
-    saveMeet: (name, content)=>{
-      dispatch({type:"SAVE_MEET", name, content})
+    saveMeet: (name, content, day)=>{
+      dispatch({type:"SAVE_MEET", name, content, day}),
+      dispatch({type:"TOGGLE_EDIT", mode:false}),
+      dispatch({type:"GET_DAY", payload:day})
+      dispatch({type:"UPDATE_DATE", payload:day})
     }
   })
 )(Editor);
