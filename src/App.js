@@ -1,4 +1,8 @@
-import React, { Component } from 'react';
+/**
+* Каркас приложения
+*/
+
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Calendar from './Calendar';
 import Meet from './Meet';
@@ -32,12 +36,5 @@ export default connect(
   state=>({
     editMode:state.editMode
   }),
-  dispatch=>({
-    // onload:()=>{
-    //   dispatch({type:"UPDATE_DATE", payload:''})
-    // }
-    // changeMode: (val)=>{
-    //   dispatch({type:"TOGGLE_EDIT"})
-    // }
-  })
+  dispatch=>({})
 )(App);

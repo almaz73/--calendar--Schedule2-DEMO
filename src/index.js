@@ -1,3 +1,6 @@
+/**
+ * Подключение и redux и показ приложения в двух вариантах: шире и уже
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

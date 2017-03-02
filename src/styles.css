@@ -4,6 +4,7 @@ body {
     padding: 0;
     font-family: Arial;
 }
+
 #root {
     width: 1000px;
     height: 600px;
@@ -21,12 +22,14 @@ body {
 .layout {
     position: relative;
 }
+
 .col1 {
     position: absolute;
     width: 200px;
     height: 600px;
     background: url('./images/left.png');
 }
+
 .col2 {
     position: absolute;
     background: white;
@@ -35,14 +38,15 @@ body {
     height: 600px;
     border-right: 2px solid #f2f2f2;
 }
+
 .col3 {
     position: absolute;
     background: white;
     left: 547px;
     right: 0;
     height: 600px;
-
 }
+
 .col3-button {
     position: absolute;
     right: 30px;
@@ -58,214 +62,244 @@ body {
     font-size: 12.5px;
     line-height: 27px;
 }
-.calendar-title{
-  margin: 0 auto;
-  margin-top:30px;
-  text-align: center;
-  padding: 0;
-}
-.calendar-title .month{
-  width: 121px;
-  color:#777;
-}
-.calendar-title button{
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-.calendar hr{
-  margin-top:48px;
-  width: 273px;
-}
-.calendar-title .leftBt{
-  background: url('./images/leftMonth.png');
-  width: 15px;
-  height: 15px;
 
+.calendar-title {
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+    padding: 0;
 }
-.calendar-title .rightBt{
-  background: url('./images/rightMonth.png');
-  width: 15px;
-  height: 15px;
-}
-.calendar-weeknames{
-  position: absolute;
-  font-family: arial;
-  top:55px;
-  left:30px;
-  font-size: 12px;
-  color:#777;
-}
-.calendar-table{
-  position: absolute;
-  top:100px;
-  left:24px;
-  width: 310px;
-  color:#bbb;
-}
-.calendar-table DIV{
-  display: inline-block;
-  /*background: yellow;*/
-  border-radius: 42px;
-  width: 38px;
-  height: 37.4px;
-  text-align: center;
-  margin: 2px 2.4px;
-  cursor:pointer;
-  font-size: 15px;
-  line-height: 37px;
-}
-.calendar-table DIV:hover{
-  background: #ffe;
-}
-.calendar-table .black{
-  z-index: 10;
-  color:black;
-}
-.calendar-table .dot{
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 4px;
-  background: #0b0;
-  margin-left: 1px;
-  margin-top: -5px;
-}
-.circle{
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
-  background: #000;
-  margin-left:-10px;
-  margin-top: -32px;
-  opacity: 0.15;
-}
-.meet-title{
-  margin-top:32px;
-  margin-left: 30px;
-  font-size: 18px;
-  color:#555;
-}
-.meet-content{
-  margin-top:38px;
-  margin-left: 30px;
-  font-size: 14px;
-  position: relative;
-}
-.meet-text{
-  float: left;
-  clear: both;
-  width: 100%;
-}
-.meet-author{
-  clear: both;
-  float: left;
-  background: #bfbfbf;
-  border-radius: 5px;
-  padding: 2px 10px;
-  color:white;
-  margin-top: 9px;
-  margin-bottom: 30px;
-}
-.meet button{
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border:0;
-  cursor:pointer;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-  visibility: hidden;
-}
-.meet-add{
-  right:73px;
-  background: url('./images/edit.png');
 
+.calendar-title .month {
+    width: 121px;
+    color: #777;
 }
-.meet-delete{
-  background: url('./images/delete.png');
-  right:34px;
-}
-.meet-one{
-  border: 1 px solid red;
 
+.calendar-title button {
+    border: 0;
+    background: none;
+    cursor: pointer;
 }
-.meet-one:hover .meet-delete, .meet-one:hover .meet-add{
-  visibility: visible;
+
+.calendar hr {
+    margin-top: 48px;
+    width: 273px;
 }
+
+.calendar-title .leftBt {
+    background: url('./images/leftMonth.png');
+    width: 15px;
+    height: 15px;
+}
+
+.calendar-title .rightBt {
+    background: url('./images/rightMonth.png');
+    width: 15px;
+    height: 15px;
+}
+
+.calendar-weeknames {
+    position: absolute;
+    font-family: arial;
+    top: 55px;
+    left: 30px;
+    font-size: 12px;
+    color: #777;
+}
+
+.calendar-table {
+    position: absolute;
+    top: 100px;
+    left: 24px;
+    width: 310px;
+    color: #bbb;
+}
+
+.calendar-table DIV {
+    display: inline-block;
+    /*background: yellow;*/
+    border-radius: 42px;
+    width: 38px;
+    height: 37.4px;
+    text-align: center;
+    margin: 2px 2.4px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 37px;
+}
+
+.calendar-table DIV:hover {
+    background: #ffe;
+}
+
+.calendar-table .black {
+    z-index: 10;
+    color: black;
+}
+
+.calendar-table .dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background: #0b0;
+    margin-left: 1px;
+    margin-top: -5px;
+}
+
+.circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background: #000;
+    margin-left: -10px;
+    margin-top: -32px;
+    opacity: 0.15;
+}
+
+.meet-title {
+    margin-top: 32px;
+    margin-left: 30px;
+    font-size: 18px;
+    color: #555;
+}
+
+.meet-content {
+    margin-top: 38px;
+    margin-left: 30px;
+    font-size: 14px;
+    position: relative;
+}
+
+.meet-text {
+    float: left;
+    clear: both;
+    width: 100%;
+}
+
+.meet-author {
+    clear: both;
+    float: left;
+    background: #bfbfbf;
+    border-radius: 5px;
+    padding: 2px 10px;
+    color: white;
+    margin-top: 9px;
+    margin-bottom: 30px;
+}
+
+.meet button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+}
+
+.meet-add {
+    right: 73px;
+    background: url('./images/edit.png');
+}
+
+.meet-delete {
+    background: url('./images/delete.png');
+    right: 34px;
+}
+
+.meet-one {
+    border: 1px solid red;
+    margin-right: 30px;
+}
+
+.meet-one:hover .meet-delete, .meet-one:hover .meet-add {
+    visibility: visible;
+}
+
 .clearfix {
     clear: both;
 }
 
-.edit{
-  margin:29px 31px;
-  margin-right: 45px;
-}
-.edit-title{
-  font-size: 18px;
-  margin-bottom: 39px;
-}
-.edit-temp{
-  margin-top:3px;
-  font-size: 12px;
-}
-.edit-temp.red{
-  color:red;
-}
-.edit-temp.red.hide{
-  visibility: hidden;
+.edit {
+    margin: 29px 31px;
+    margin-right: 45px;
 }
 
-.edit-input{
-  margin-top: 10px;
-  border-radius: 2px;
-  height: 22px;
-  width: 185px;
-  border:1px solid #999;
-  padding-left: 10px;
-  font-size: 14px;
+.edit-title {
+    font-size: 18px;
+    margin-bottom: 39px;
 }
-.edit-input-area{
-  line-height: 22px;
-  font-size: 12px;
-  height: 55px;
-  width: 100%;
-  margin-bottom: 24px;
-}
-.edit-input.red{
-  border-color: red;
-}
-.edit-button{
-  background: #f6cf31;
-  width: 75px;
-  height: 25px;
-  border-radius: 25px;
-  text-align: center;
-  line-height: 25px;
-  cursor:pointer;
-  margin: 2px;
-  font-size: 14px;
 
+.edit-temp {
+    margin-top: 3px;
+    font-size: 12px;
 }
-.edit-button.close{
-  position: absolute;
-  font-size: 24px;
-  top:23px;
-  right: 7px;
-  background: none;
+
+.edit-temp.red {
+    color: red;
 }
-.edit-button.save{
-  float: right;
-  color:white;
-  width: 65px;
-  margin-right: -14px;
+
+.edit-temp.red.hide {
+    visibility: hidden;
 }
-.edit-button.cansel{
-  float: right;
-  color: #f6cf31;
-  border: 1px solid #f6cf31;
-  background: none;
-  width: 82px;
-  margin-right: 7px;
-  height: 23px;
+
+.edit-input {
+    margin-top: 10px;
+    border-radius: 2px;
+    height: 22px;
+    width: 185px;
+    border: 1px solid #999;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.edit-input-area {
+    line-height: 22px;
+    font-size: 12px;
+    height: 55px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.edit-input.red {
+    border-color: red;
+}
+
+.edit-button {
+    background: #f6cf31;
+    width: 75px;
+    height: 25px;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    margin: 2px;
+    font-size: 14px;
+}
+
+.edit-button.close {
+    position: absolute;
+    font-size: 24px;
+    top: 23px;
+    right: 7px;
+    background: none;
+}
+
+.edit-button.save {
+    float: right;
+    color: white;
+    width: 65px;
+    margin-right: -14px;
+}
+
+.edit-button.cansel {
+    float: right;
+    color: #f6cf31;
+    border: 1px solid #f6cf31;
+    background: none;
+    width: 82px;
+    margin-right: 7px;
+    height: 23px;
 }

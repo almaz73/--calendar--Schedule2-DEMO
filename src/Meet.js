@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+/**
+ * Отображение встреч
+ */
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 
 class Meet extends Component {
   render() {
     var
-      day=this.props.meetDate.day,
-      list="Nothing planned";
+      day = this.props.meetDate.day,
+      list = "Nothing planned";
 
     return (
       <div className="meet">

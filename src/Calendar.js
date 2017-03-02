@@ -1,22 +1,28 @@
-import React, { Component } from 'react';
+/**
+* Каленьдарь,
+ * TODO для доработки нужно научить прыгать по дням в редюссере days
+*/
+
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 
 class Calendar extends Component {
-  onChoiseDate(val){
+  onChoiseDate(val) {
     this.props.onGetDay(val)
   }
+
   render() {
     var
-      self=this,
-      days=this.props.days,
+      self = this,
+      days = this.props.days,
       black,
-      dayWithMeet=[],
-      dayPoint=this.props.meetDate.day;
+      dayWithMeet = [],
+      dayPoint = this.props.meetDate.day;
 
 
-    if(typeof(this.props.meetDate.day)!=="string"){
-      dayPoint=this.props.meetDate.day[0]
+    if (typeof(this.props.meetDate.day) !== "string") {
+      dayPoint = this.props.meetDate.day[0]
     }
 
     return (

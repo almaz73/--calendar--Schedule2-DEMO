@@ -1,4 +1,9 @@
-import React, { Component } from 'react';
+/**
+ * Редактор,
+ * TODO нужно доработать правку и удаление
+ */
+
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 
@@ -10,20 +15,22 @@ class Editor extends Component {
       isRequireArea: false
     };
   }
-  onSave(val){
+
+  onSave(val) {
     this.onCheck(val)
-    if(this.nameInput.value==="" || this.areaInput.value===""){
+    if (this.nameInput.value === "" || this.areaInput.value === "") {
       return;
     }
     var day = this.props.meetDate.day;
-    if(typeof(this.props.meetDate.day)!=="string"){
-      day=this.props.meetDate.day[0]
+    if (typeof(this.props.meetDate.day) !== "string") {
+      day = this.props.meetDate.day[0]
     }
     this.props.saveMeet(this.nameInput.value, this.areaInput.value, day)
   }
-  onCheck(val){
-    this.setState({ isRequireName: this.nameInput.value==="" });
-    this.setState({ isRequireArea: this.areaInput.value==="" });
+
+  onCheck(val) {
+    this.setState({isRequireName: this.nameInput.value === ""});
+    this.setState({isRequireArea: this.areaInput.value === ""});
   }
 
   render() {
