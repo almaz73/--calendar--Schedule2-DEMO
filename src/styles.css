@@ -10,6 +10,14 @@ body {
     margin: 10px auto;
     margin-top: 50px;
 }
+
+#root2 {
+    width: 1200px;
+    height: 600px;
+    margin: 10px auto;
+    margin-top: 120px;
+}
+
 .layout {
     position: relative;
 }
@@ -108,23 +116,30 @@ body {
   line-height: 37px;
 }
 .calendar-table DIV:hover{
-  background: #ff9;
+  background: #ffe;
 }
 .calendar-table .black{
+  z-index: 10;
   color:black;
 }
 .calendar-table .dot{
   position: absolute;
-  /*top:23px;*/
-  /*left:12px;*/
   width: 4px;
   height: 4px;
   border-radius: 4px;
   background: green;
-
-  /*text-align: center;*/
-  margin-left: 4px;
-  margin-top: 30px;
+  margin-left: 1px;
+  margin-top: -13px;
+}
+.circle{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  background: #000;
+  margin-left:-10px;
+  margin-top: -32px;
+  opacity: 0.15;
 }
 .meet-title{
   margin-top:32px;

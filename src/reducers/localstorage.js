@@ -4,7 +4,7 @@ export var datas = [
   {
     meet:[
       {
-        text:"Sheduling a meeting time shouldn't be hard.  ",
+        text:"Sheduling a meeting time shouldn't be hard. Sheduling a meeting time shouldn't be hard.Sheduling a meeting time shouldn't be hard.Sheduling a meeting time shouldn't be hard. ",
         author:'Stella Adler'
       },
       {

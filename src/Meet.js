@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 class Meet extends Component {
   render() {
     var
-      days=this.props.meetDate.day,
+      day=this.props.meetDate.day,
       list="Nothing planned";
 
     return (
@@ -14,7 +14,7 @@ class Meet extends Component {
           className="col3-button"
           onClick={this.props.changeMode}
         >CREATE</div>
-        <div className="meet-title">{days}</div>
+        <div className="meet-title">{day}</div>
         <div className="meet-content">
           {
             this.props.meetDate.meet &&

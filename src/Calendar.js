@@ -11,7 +11,13 @@ class Calendar extends Component {
       self=this,
       days=this.props.days,
       black,
-      dayWithMeet=[];
+      dayWithMeet=[],
+      dayPoint=this.props.meetDate.day;
+
+
+    if(typeof(this.props.meetDate.day)!=="string"){
+      dayPoint=this.props.meetDate.day[0]
+    }
 
     return (
       <div className="calendar">
@@ -33,15 +39,18 @@ class Calendar extends Component {
             }
 
             return(
+              <div>
               <div
                 key={index}
                 className={black?"black":""}
                 title={day}
                 onClick={self.onChoiseDate.bind(self, day)}
               >
-                {busy?<span className="dot"></span>:""}
                 {day.replace(/\D+/g,"")}
 
+              </div>
+              {busy?<span className="dot"></span>:""}
+              {dayPoint===day?<span className="circle"></span>:""}
               </div>
             )
           })
@@ -55,7 +64,8 @@ class Calendar extends Component {
 
 export default connect(
   state=>({
-    days:state.days
+    days:state.days,
+    meetDate:state.meet
   }),
   dispatch=>({
     onGetDay: (val)=>{
