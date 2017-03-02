@@ -1,1 +1,1 @@
-по заказу
+Демо тут http://fmap.ru/games/game/Schedule2/index.html
