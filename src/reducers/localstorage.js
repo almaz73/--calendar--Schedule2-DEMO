@@ -42,7 +42,7 @@ export function getRecByDate(val) {
   return recByDate;
 }
 export function getBuzy(day) {
-  var busy = datas.find(elem = > {
+  var busy = datas.find(elem => {
       return elem.day === day
     }
 )
@@ -50,7 +50,7 @@ export function getBuzy(day) {
 }
 
 export function save(author, text, day) {
-  var data = datas.find(elem = > elem.day === day
+  var data = datas.find(elem => elem.day === day
 )
   ;
   if (data) {
