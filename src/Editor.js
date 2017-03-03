@@ -8,35 +8,39 @@ class Editor extends Component {
     this.state = {
       isRequireName: false,
       isRequireArea: false
-    };
+    }
   }
 
-  onSave(val) {
-    this.onCheck(val)
-    if (this.nameInput.value === "" || this.areaInput.value === "") {
-      return;
-    }
+  onSave() {
+    this.onCheck();
+    if (this.nameInput.value === "" || this.areaInput.value === "") return;
+
     var day = this.props.records.day;
 
     this.props.saveMeet(
-        this.nameInput.value,
-        this.areaInput.value,
-        day,
-        this.props.editContent.oldAuthor,
-        this.props.editContent.oldText
-      )
+      this.nameInput.value,
+      this.areaInput.value,
+      day,
+      this.props.editContent.oldAuthor,
+      this.props.editContent.oldText
+    )
   }
 
-  onCheck(val) {
+  onCheck() {
     this.setState({isRequireName: this.nameInput.value === ""});
     this.setState({isRequireArea: this.areaInput.value === ""});
+    this.props.onChangeFields(this.nameInput.value, this.areaInput.value);
+  }
 
-    this.props.onChangeFields(this.nameInput.value, this.areaInput.value)
+  onCancel(){
+    this.props.onCancelFields(
+      this.props.editContent.oldAuthor,
+      this.props.editContent.oldText
+    )
   }
 
 
   render() {
-
     var
       requireName = "edit-input ",
       requireNemePar = "edit-temp red ",
@@ -70,7 +74,7 @@ class Editor extends Component {
         />
         <div className="edit-button close" onClick={this.props.changeMode}>X</div>
         <div className="edit-button save" onClick={this.onSave.bind(this)}>SAVE</div>
-        <div className="edit-button cansel">CANSEL</div>
+        <div className="edit-button cancel" onClick={this.onCancel.bind(this)}>CANCEL</div>
       </form>
     );
   }
@@ -90,11 +94,19 @@ export default connect(
     saveMeet: (author, text, day, oldAuthor, oldText)=>{
       dispatch({type:"SAVE_MEET", author, text, day, oldAuthor, oldText})
       dispatch({type:"TOGGLE_EDIT", mode:false})
-      dispatch({type:"GET_DAY", payload:day})
-      dispatch({type:"UPDATE_DATE", payload:day})
+      dispatch({type:"GET_DAY", day})
+      dispatch({type:"UPDATE_DATE"})
     },
     onChangeFields:(author, text)=>{
       dispatch({type:"EDIT_CHANGE", author, text})
+    },
+    onCancelFields:(oldAuthor, oldText)=>{
+      dispatch({type:"EDIT_CHANGE",
+        author:oldAuthor,
+        text:oldText,
+        oldAuthor,
+        oldText
+      })
     }
   })
 )(Editor);

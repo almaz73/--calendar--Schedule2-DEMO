@@ -1,12 +1,7 @@
-/**
- * Отображение встреч
- */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-
 class Meet extends Component {
-
   onDelete(val){
     var day = this.props.records.day;
     this.props.deleteMeet(val, day);
@@ -18,8 +13,8 @@ class Meet extends Component {
   render() {
     var
       self = this,
-      day = this.props.records.day,
-      list = "Nothing planned";
+      list = "Nothing planned",
+      day = this.props.records.day;
 
     return (
       <div className="meet">
@@ -55,11 +50,10 @@ class Meet extends Component {
               )
             })
           }
-
           {!this.props.records.meet && list}
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -71,17 +65,17 @@ export default connect(
     changeMode: (val)=>{
       dispatch({
         type:"EDIT_CHANGE",
-        author:"",
-        text:"",
         oldAuthor:"",
-        oldText:""
+        oldText:"",
+        author:"",
+        text:""
       })
       dispatch({type:"TOGGLE_EDIT"})
     },
     deleteMeet: (meet, day)=>{
       dispatch({type:"DELETE_MEET", meet, day})
-      dispatch({type:"GET_DAY", payload:day})
-      dispatch({type:"UPDATE_DATE", payload:day})
+      dispatch({type:"GET_DAY", day})
+      dispatch({type:"UPDATE_DATE"})
     },
     editMeet: (author, text)=>{
       dispatch({

@@ -1,12 +1,8 @@
-/**
-* Каркас приложения
-*/
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Calendar from './Calendar';
-import Meet from './Meet';
 import Editor from './Editor';
+import Meet from './Meet';
 
 
 class App extends Component {
@@ -16,12 +12,11 @@ class App extends Component {
 
     return (
         <div className="layout">
-         <div className="col1"></div>
-         <div className="col2">
-          <Calendar/>
-         </div>
-         <div className="col3">
-
+          <div className="col1"></div>
+          <div className="col2">
+            <Calendar/>
+          </div>
+          <div className="col3">
           {editMode && <Editor/>}
           {!editMode && <Meet/>}
          </div>
@@ -33,6 +28,5 @@ class App extends Component {
 export default connect(
   state=>({
     editMode:state.editMode
-  }),
-  dispatch=>({})
+  })
 )(App);

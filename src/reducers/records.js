@@ -8,10 +8,10 @@ var initialState = bd.datas[0]
 
 export default function myReducer(state=initialState, action) {
   if (action.type === "GET_DAY") {
-    state = bd.getRecByDate(action.payload);
+    state = bd.getRecByDate(action.day);
 		return {
       ...state,
-      day: action.payload
+      day: action.day
 		}
 	}
 

@@ -8,8 +8,8 @@ import {connect} from 'react-redux';
 
 
 class Calendar extends Component {
-  onChoiseDate(val) {
-    this.props.onGetDay(val)
+  onChoiseDate(day) {
+    this.props.onGetDay(day)
   }
 
   render() {
@@ -32,8 +32,9 @@ class Calendar extends Component {
         <div className="calendar-table">
         {
           days.map((elem, index)=>{
-            var day = elem.day;
-            var busy = elem.busy;
+            var
+              day = elem.day,
+              busy = elem.busy;
 
             if(day.replace(/\D+/g,"")==="1"){
               black=!black?true:false;
@@ -57,7 +58,7 @@ class Calendar extends Component {
         }
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -68,9 +69,9 @@ export default connect(
     records:state.records
   }),
   dispatch=>({
-    onGetDay: (val)=>{
+    onGetDay: (day)=>{
       dispatch({type:"TOGGLE_EDIT", mode:false})
-      dispatch({type:"GET_DAY", payload:val})
+      dispatch({type:"GET_DAY", day})
     }
   })
 )(Calendar);
