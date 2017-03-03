@@ -17,11 +17,10 @@ class Calendar extends Component {
       self = this,
       days = this.props.days,
       black,
-      dayWithMeet = [],
       dayPoint = this.props.meetDate.day;
 
 
-    if (typeof(this.props.meetDate.day) !== "string") {
+    if (typeof(this.props.meetDate.day) !== "string" && this.props.meetDate.day) {
       dayPoint = this.props.meetDate.day[0]
     }
 
@@ -70,7 +69,7 @@ class Calendar extends Component {
 export default connect(
   state=>({
     days:state.days,
-    meetDate:state.meet
+    meetDate:state.records
   }),
   dispatch=>({
     onGetDay: (val)=>{

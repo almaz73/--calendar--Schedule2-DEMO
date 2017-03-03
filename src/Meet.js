@@ -6,8 +6,21 @@ import {connect} from 'react-redux';
 
 
 class Meet extends Component {
+
+  onDelete(val){
+    var day = this.props.meetDate.day;
+    if (typeof(this.props.meetDate.day) !== "string") {
+      day = this.props.meetDate.day[0]
+    }
+    this.props.deleteMeet(val, day);
+  }
+  onEdit(val){
+    console.log(" onEdit = ", val);
+  }
+
   render() {
     var
+      self = this,
       day = this.props.meetDate.day,
       list = "Nothing planned";
 
@@ -25,8 +38,19 @@ class Meet extends Component {
               return(
                 <div className="meet-one" key={index}>
                   <div className="meet-text">
-                    <button className="meet-add"></button>
-                    <button className="meet-delete"></button>
+                    <button
+                      className="meet-add"
+                      title="Редактировать"
+                      onClick={self.onEdit.bind(self, meet)}
+                    ></button>
+                    <button
+                      className="meet-delete"
+                      title="Удалить"
+                      onClick={self.onDelete.bind(self, meet)}
+                    ></button>
+
+
+
                     {meet.text}
                   </div>
                   <div className="meet-author">
@@ -49,11 +73,16 @@ class Meet extends Component {
 
 export default connect(
   state=>({
-    meetDate:state.meet
+    meetDate:state.records
   }),
   dispatch=>({
     changeMode: (val)=>{
       dispatch({type:"TOGGLE_EDIT"})
+    },
+    deleteMeet: (meet, day)=>{
+      dispatch({type:"DELETE_MEET", meet, day})
+      dispatch({type:"GET_DAY", payload:day})
+      dispatch({type:"UPDATE_DATE", payload:day})
     }
   })
 )(Meet);

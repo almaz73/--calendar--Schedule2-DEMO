@@ -74,15 +74,15 @@ class Editor extends Component {
 
 export default connect(
   state=>({
-    meetDate:state.meet
+    meetDate:state.records
   }),
   dispatch=>({
     changeMode: (val)=>{
       dispatch({type:"TOGGLE_EDIT"})
     },
     saveMeet: (name, content, day)=>{
-      dispatch({type:"SAVE_MEET", name, content, day}),
-      dispatch({type:"TOGGLE_EDIT", mode:false}),
+      dispatch({type:"SAVE_MEET", name, content, day})
+      dispatch({type:"TOGGLE_EDIT", mode:false})
       dispatch({type:"GET_DAY", payload:day})
       dispatch({type:"UPDATE_DATE", payload:day})
     }
