@@ -10,8 +10,6 @@ import Editor from './Editor';
 
 
 class App extends Component {
-
-
   render() {
 
     var editMode = this.props.editMode;

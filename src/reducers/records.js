@@ -1,5 +1,5 @@
 /**
- * получаем данные одного дня
+ * получаем данные дня
  */
 
 import * as bd from '../bd/localstorage';
@@ -11,20 +11,24 @@ export default function myReducer(state=initialState, action) {
     state = bd.getRecByDate(action.payload);
 		return {
       ...state,
-      day:[action.payload]
+      day: action.payload
 		}
 	}
 
   if (action.type === "SAVE_MEET") {
-    state = bd.save(action.name, action.content, action.day);
+    state = bd.save(
+      action.author,
+      action.text,
+      action.day,
+      action.oldAuthor,
+      action.oldText
+    );
     return {
       ...state
     }
   }
 
   if(action.type === "DELETE_MEET"){
-    console.log(" Будем удалять = ", action.meet);
-    console.log(" action.day = ", action.day);
     state = bd.del(action.meet.text, action.meet.author, action.day);
     return {
       ...state

@@ -1,8 +1,3 @@
-/**
- * Редактор,
- * TODO нужно доработать правку и удаление
- */
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
@@ -21,38 +16,48 @@ class Editor extends Component {
     if (this.nameInput.value === "" || this.areaInput.value === "") {
       return;
     }
-    var day = this.props.meetDate.day;
-    if (typeof(this.props.meetDate.day) !== "string") {
-      day = this.props.meetDate.day[0]
-    }
-    this.props.saveMeet(this.nameInput.value, this.areaInput.value, day)
+    var day = this.props.records.day;
+
+    this.props.saveMeet(
+        this.nameInput.value,
+        this.areaInput.value,
+        day,
+        this.props.editContent.oldAuthor,
+        this.props.editContent.oldText
+      )
   }
 
   onCheck(val) {
     this.setState({isRequireName: this.nameInput.value === ""});
     this.setState({isRequireArea: this.areaInput.value === ""});
+
+    this.props.onChangeFields(this.nameInput.value, this.areaInput.value)
   }
 
-  render() {
-    var
-      requireName ="edit-input ",
-      requireNemePar = "edit-temp red ",
-      requireArea ="edit-input edit-input-area " ;
 
-    requireName+=this.state.isRequireName?'red':'';
-    requireArea+=this.state.isRequireArea?'red':'';
+  render() {
+
+    var
+      requireName = "edit-input ",
+      requireNemePar = "edit-temp red ",
+      requireArea = "edit-input edit-input-area ",
+      inputText = this.props.editContent.author,
+      areaText = this.props.editContent.text;
+
+    requireName += this.state.isRequireName ? 'red' : '';
+    requireArea += this.state.isRequireArea ? 'red' : '';
     requireNemePar+=this.state.isRequireName?'':'hide';
 
-    console.log(" requireName = ", requireName);
     return (
       <form  className="edit">
-        <div  className="edit-title"> New meeting on {this.props.meetDate.day[0]}</div>
+        <div  className="edit-title"> New meeting on {this.props.records.day}</div>
         <div className="edit-temp">Participant</div>
         <input
           className={requireName}
           placeholder="Name"
           ref={(input) => this.nameInput = input}
           onChange={this.onCheck.bind(this)}
+          value={inputText}
         />
         <div className={requireNemePar}>Participant is required</div>
         <div className="edit-temp">Description</div>
@@ -61,6 +66,7 @@ class Editor extends Component {
           placeholder="Meeting description"
           ref={(input) => this.areaInput = input}
           onChange={this.onCheck.bind(this)}
+          value={areaText}
         />
         <div className="edit-button close" onClick={this.props.changeMode}>X</div>
         <div className="edit-button save" onClick={this.onSave.bind(this)}>SAVE</div>
@@ -74,17 +80,21 @@ class Editor extends Component {
 
 export default connect(
   state=>({
-    meetDate:state.records
+    records:state.records,
+    editContent: state.editContent
   }),
   dispatch=>({
     changeMode: (val)=>{
       dispatch({type:"TOGGLE_EDIT"})
     },
-    saveMeet: (name, content, day)=>{
-      dispatch({type:"SAVE_MEET", name, content, day})
+    saveMeet: (author, text, day, oldAuthor, oldText)=>{
+      dispatch({type:"SAVE_MEET", author, text, day, oldAuthor, oldText})
       dispatch({type:"TOGGLE_EDIT", mode:false})
       dispatch({type:"GET_DAY", payload:day})
       dispatch({type:"UPDATE_DATE", payload:day})
+    },
+    onChangeFields:(author, text)=>{
+      dispatch({type:"EDIT_CHANGE", author, text})
     }
   })
 )(Editor);

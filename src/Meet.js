@@ -8,20 +8,17 @@ import {connect} from 'react-redux';
 class Meet extends Component {
 
   onDelete(val){
-    var day = this.props.meetDate.day;
-    if (typeof(this.props.meetDate.day) !== "string") {
-      day = this.props.meetDate.day[0]
-    }
+    var day = this.props.records.day;
     this.props.deleteMeet(val, day);
   }
-  onEdit(val){
-    console.log(" onEdit = ", val);
+  onEdit(meet){
+    this.props.editMeet(meet.author, meet.text);
   }
 
   render() {
     var
       self = this,
-      day = this.props.meetDate.day,
+      day = this.props.records.day,
       list = "Nothing planned";
 
     return (
@@ -33,8 +30,8 @@ class Meet extends Component {
         <div className="meet-title">{day}</div>
         <div className="meet-content">
           {
-            this.props.meetDate.meet &&
-            this.props.meetDate.meet.map((meet, index)=>{
+            this.props.records.meet &&
+            this.props.records.meet.map((meet, index)=>{
               return(
                 <div className="meet-one" key={index}>
                   <div className="meet-text">
@@ -48,9 +45,6 @@ class Meet extends Component {
                       title="Удалить"
                       onClick={self.onDelete.bind(self, meet)}
                     ></button>
-
-
-
                     {meet.text}
                   </div>
                   <div className="meet-author">
@@ -62,27 +56,42 @@ class Meet extends Component {
             })
           }
 
-          {!this.props.meetDate.meet && list}
+          {!this.props.records.meet && list}
         </div>
       </div>
     );
   }
 }
 
-
-
 export default connect(
   state=>({
-    meetDate:state.records
+    records:state.records
   }),
   dispatch=>({
     changeMode: (val)=>{
+      dispatch({
+        type:"EDIT_CHANGE",
+        author:"",
+        text:"",
+        oldAuthor:"",
+        oldText:""
+      })
       dispatch({type:"TOGGLE_EDIT"})
     },
     deleteMeet: (meet, day)=>{
       dispatch({type:"DELETE_MEET", meet, day})
       dispatch({type:"GET_DAY", payload:day})
       dispatch({type:"UPDATE_DATE", payload:day})
+    },
+    editMeet: (author, text)=>{
+      dispatch({
+        type:"EDIT_CHANGE",
+        author,
+        text,
+        oldAuthor:author,
+        oldText:text
+      })
+      dispatch({type:"TOGGLE_EDIT", mode:true})
     }
   })
 )(Meet);

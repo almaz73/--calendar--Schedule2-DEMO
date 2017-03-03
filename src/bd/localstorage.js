@@ -1,6 +1,7 @@
 /**
  * Вместо базы данных используем локалхост
  */
+
 export var datas = [
   {
     day: "September 23",
@@ -26,57 +27,76 @@ export var datas = [
   }
 ];
 
+// из локалхоста забираем сохраненный json
 var returnObj = JSON.parse(localStorage.getItem("Meetings")) // из локалхоста
-if (returnObj) {
+if (returnObj && returnObj.length>0) {
   datas = returnObj
 }
 
-
-export function getRecByDate(val) {
-  var recByDate = datas.find(function (rec) {
-    return rec.day === val
-  })
+// по дате получим данные на этот день
+export function getRecByDate(day) {
+  var recByDate = datas.find(rec => rec.day === day)
   return recByDate;
 }
+
+//функция определения наличия записей за выбранный день
 export function getBuzy(day) {
-  var busy = datas.find(elem => {
-      return elem.day === day
-    }
-  )
-  return busy
+  return datas.find(elem => elem.day === day)
 }
 
-// добавляем в
-export function save(author, text, day) {
-  var data = datas.find(elem => elem.day === day)  ;
-  if (data) {
-    data.meet.push({author, text});
-  } else {
-    datas.push({meet: [{author, text}], day})
+// добавляем в json и сохраняем в локалхосте
+export function save(author, text, day, oldAuthor, oldText) {
+  var data = datas.find(elem => elem.day === day);
+  if(oldAuthor!=="" && oldText!==""){
+    // отредактированная запись
+    // var elem = datas.find(elem=>elem.day===day)
+    var newDatas=[];
+    datas.map(data=>{
+      var newMeet=[];
+      data.meet.find(elem=>{
+        if(!(elem.text===oldText && elem.author===oldAuthor)){
+          newMeet.push(elem)
+        }else{
+          newMeet.push({ text, author })
+        }
+        return false;
+      });
+      newDatas.push({day:data.day, meet:newMeet})
+      return false;
+    })
+    datas = newDatas;
+  }else{
+    // новая запись
+    if (data) {data.meet.push({author, text});}
+    else {datas.push({meet: [{author, text}], day})}
   }
+
   localStorageSAVE(datas);
   return datas;
 }
 
+// удаление записи
 export function del(text, author, day){
-  var newDatas=[]
+  var newDatas=[];
   datas.map(data=>{
     var newMeet=[];
-    var message = data.meet.find(elem=>{
+    data.meet.find(elem=>{
       if(!(elem.text===text && elem.author===author)){
         newMeet.push(elem)
       }
+      return false;
     })
     if(newMeet.length>0)newDatas.push({day:data.day, meet:newMeet})
+    return false;
   })
-  datas = newDatas
-  localStorageSAVE(datas)
-  return newDatas
+  datas = newDatas;
+  localStorageSAVE(datas);
+  return newDatas;
 }
 
 
 
-
+//cохрянем в локалхост сериализованный json
 function localStorageSAVE(){
   var serialObj = JSON.stringify(datas);
   localStorage.setItem('Meetings', serialObj); // сохраняем

@@ -81,9 +81,12 @@ body {
     cursor: pointer;
 }
 
-.calendar hr {
+.calendar-hr {
+    margin: 0 auto;
+    height: 1px;
     margin-top: 48px;
-    width: 273px;
+    width: 275px;
+    background: #eee;
 }
 
 .calendar-title .leftBt {
@@ -117,7 +120,6 @@ body {
 
 .calendar-table DIV {
     display: inline-block;
-    /*background: yellow;*/
     border-radius: 42px;
     width: 38px;
     height: 37.4px;
@@ -154,14 +156,14 @@ body {
     border-radius: 25px;
     background: #000;
     margin-left: -10px;
-    margin-top: -32px;
+    margin-top: -35px;
     opacity: 0.15;
 }
 
-.meet{
-  max-height: 600px;
-  overflow-y: auto;
-  overflow-x: hidden;
+.meet {
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .meet-title {
@@ -207,11 +209,11 @@ body {
 
 .meet-add {
     right: 73px;
-    background: url('./images/edit_big.png');
+    background: url('./images/edit.png');
 }
 
 .meet-delete {
-    background: url('./images/delete_big.png');
+    background: url('./images/delete.png');
     right: 34px;
 }
 

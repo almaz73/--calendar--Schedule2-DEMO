@@ -1,5 +1,5 @@
 /**
-* переключатель режима редактирования
+* редюсер переключения режима редактирования
 */
 export default function myReducer(state=false, action) {
 	if (action.type === "TOGGLE_EDIT") {

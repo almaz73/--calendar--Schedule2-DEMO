@@ -17,12 +17,7 @@ class Calendar extends Component {
       self = this,
       days = this.props.days,
       black,
-      dayPoint = this.props.meetDate.day;
-
-
-    if (typeof(this.props.meetDate.day) !== "string" && this.props.meetDate.day) {
-      dayPoint = this.props.meetDate.day[0]
-    }
+      dayPoint = this.props.records.day;
 
     return (
       <div className="calendar">
@@ -32,7 +27,8 @@ class Calendar extends Component {
           <button className="rightBt"></button>
         </div>
         <pre className="calendar-weeknames">MON       TUE      WED      THU      FRI      SAT       SUN</pre>
-        <hr />
+
+        <div className="calendar-hr"></div>
         <div className="calendar-table">
         {
           days.map((elem, index)=>{
@@ -69,7 +65,7 @@ class Calendar extends Component {
 export default connect(
   state=>({
     days:state.days,
-    meetDate:state.records
+    records:state.records
   }),
   dispatch=>({
     onGetDay: (val)=>{
