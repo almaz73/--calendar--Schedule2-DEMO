@@ -1,7 +1,7 @@
 /**
  * Вместо базы данных используем локалхост
  */
-
+var NAMEBD = 'Meetings3';
 export var datas = [
   {
     day: "March 8 2017",
@@ -28,21 +28,19 @@ export var datas = [
 ];
 
 // из локалхоста забираем сохраненный json
-var returnObj = JSON.parse(localStorage.getItem("Meetings")) // из локалхоста
+var returnObj = JSON.parse(localStorage.getItem(NAMEBD)) // из локалхоста
 if (returnObj && returnObj.length>0) {
   datas = returnObj
 }
 
 // по дате получим данные на этот день
 export function getRecByDate(day) {
-  var recByDate = datas.find(rec => rec.day === day)
-  return recByDate;
-}
-
-//функция определения наличия записей за выбранный день
-export function getBuzy(day) {
-
-  return datas.find(elem => elem.day === day)
+  for (var a in datas) {
+    if (datas[a].day === day) {
+      return datas[a]
+    }
+  }
+  //return = datas.find(rec =>rec.day === day) // в ie не поддерживает
 }
 
 // добавляем в json и сохраняем в локалхосте
@@ -100,5 +98,5 @@ export function del(text, author, day){
 //cохрянем в локалхост сериализованный json
 function localStorageSAVE(){
   var serialObj = JSON.stringify(datas);
-  localStorage.setItem('Meetings', serialObj); // сохраняем
+  localStorage.setItem(NAMEBD, serialObj); // сохраняем
 }
