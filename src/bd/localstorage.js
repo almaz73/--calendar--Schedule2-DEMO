@@ -4,24 +4,24 @@
 
 export var datas = [
   {
-    day: "September 23",
+    day: "March 8 2017",
     meet: [
       {
         text: "Sheduling a meeting time shouldn't be hard. Sheduling a meeting time shouldn't be hard.Sheduling a meeting time shouldn't be hard.Sheduling a meeting time shouldn't be hard. ",
         author: 'Stella Adler'
       },
       {
-        text: "Democratic way to coordinate",
-        author: 'Eddy Arnold'
+        text: "Interesting presentation   ",
+        author: 'Barak Abama'
       }
     ]
   },
   {
-    day: "September 1",
+    day: "March 24 2017",
     meet: [
       {
-        text: "Interesting presentation   ",
-        author: 'Barak Abama'
+        text: "Democratic way to coordinate",
+        author: 'Eddy Arnold'
       }
     ]
   }
@@ -41,6 +41,7 @@ export function getRecByDate(day) {
 
 //функция определения наличия записей за выбранный день
 export function getBuzy(day) {
+
   return datas.find(elem => elem.day === day)
 }
 

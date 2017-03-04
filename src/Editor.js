@@ -42,6 +42,7 @@ class Editor extends Component {
 
   render() {
     var
+      day = this.props.records.day,
       requireName = "edit-input ",
       requireNemePar = "edit-temp red ",
       requireArea = "edit-input edit-input-area ",
@@ -54,7 +55,7 @@ class Editor extends Component {
 
     return (
       <form  className="edit">
-        <div  className="edit-title"> New meeting on {this.props.records.day}</div>
+        <div  className="edit-title"> New meeting on {day.slice(0,-4)}</div>
         <div className="edit-temp">Participant</div>
         <input
           className={requireName}
@@ -95,7 +96,7 @@ export default connect(
       dispatch({type:"SAVE_MEET", author, text, day, oldAuthor, oldText})
       dispatch({type:"TOGGLE_EDIT", mode:false})
       dispatch({type:"GET_DAY", day})
-      dispatch({type:"UPDATE_DATE"})
+      dispatch({type:"UPDATE_BUSY_DAYS"})
     },
     onChangeFields:(author, text)=>{
       dispatch({type:"EDIT_CHANGE", author, text})

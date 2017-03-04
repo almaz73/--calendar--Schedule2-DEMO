@@ -6,7 +6,7 @@ import * as bd from '../bd/localstorage';
 
 var initialState = bd.datas[0]
 
-export default function myReducer(state=initialState, action) {
+export default function (state=initialState, action) {
   if (action.type === "GET_DAY") {
     state = bd.getRecByDate(action.day);
 		return {

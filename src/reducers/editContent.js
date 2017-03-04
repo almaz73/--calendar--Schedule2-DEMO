@@ -3,7 +3,7 @@
 */
 var initialState = {author:"", text:"", oldAuthor:"", oldText:""}
 
-export default function myReducer(state = initialState, action) {
+export default function (state = initialState, action) {
   if (action.type === "EDIT_CHANGE") {
 
     if(action.oldAuthor!==undefined && action.oldText!==undefined){

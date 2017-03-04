@@ -22,7 +22,7 @@ class Meet extends Component {
           className="col3-button"
           onClick={this.props.changeMode}
         >CREATE</div>
-        <div className="meet-title">{day}</div>
+        <div className="meet-title">{day.slice(0,-4)}</div>
         <div className="meet-content">
           {
             this.props.records.meet &&
@@ -75,7 +75,7 @@ export default connect(
     deleteMeet: (meet, day)=>{
       dispatch({type:"DELETE_MEET", meet, day})
       dispatch({type:"GET_DAY", day})
-      dispatch({type:"UPDATE_DATE"})
+      dispatch({type:"UPDATE_BUSY_DAYS"})
     },
     editMeet: (author, text)=>{
       dispatch({
