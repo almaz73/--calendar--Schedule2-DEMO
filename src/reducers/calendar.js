@@ -6,10 +6,7 @@ var initialState = fillingCaledar(firstMonth);
 
 // заполнение календаря и занятых дней
 function fillingCaledar(firstMonth){
-  var firstDay = searchCornerDay(firstMonth)
-  if(firstDay==="Invalid date"){
-    firstDay = searchCornerDay(toCorrectDateMonth(firstMonth))
-  }
+  var firstDay = searchCornerDay(toCorrectDateMonth(firstMonth));
   var
     days=[],
     DAY = new Date(firstDay),
@@ -60,21 +57,28 @@ function searchCornerDay(month){
   return firstDay;
 }
 
-export default function (state=initialState, action) {
-  var month;
-	if (action.type === "MONTH_LEFT") {
-    month = moment(new Date(state.month)).add(-1, 'months').format('MMM YYYY');
+// получаем соседний месяц календаря
+function changeMonth(whereTo, state){
+  var
+    month,
+    stateMonth = toCorrectDateMonth(state.month);
+
+    month = moment(new Date(stateMonth)).add(whereTo, 'months').format('MMM YYYY');
     firstMonth = month;
-    state =fillingCaledar(month);
+    return fillingCaledar(month);
+
+}
+
+export default function (state=initialState, action) {
+	if (action.type === "MONTH_LEFT") {
+    state = changeMonth(-1, state);
     return {
       ...state
     }
 	}
 
   if (action.type === "MONTH_RIGHT") {
-    month = moment(new Date(state.month)).add(1, 'months').format('MMM YYYY');
-    firstMonth = month;
-    state =fillingCaledar(month);
+    state = changeMonth(1, state);
     return {
       ...state
     }

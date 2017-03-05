@@ -1,7 +1,7 @@
 /**
  * Вместо базы данных используем локалхост
  */
-var NAMEBD = 'Meetings3';
+var NAMEBD = 'Meetings4';
 export var datas = [
   {
     day: "March 8 2017",
@@ -45,21 +45,29 @@ export function getRecByDate(day) {
 
 // добавляем в json и сохраняем в локалхосте
 export function save(author, text, day, oldAuthor, oldText) {
-  var data = datas.find(elem => elem.day === day);
+  var data;
+  // var data = datas.find(elem => elem.day === day);
+  for (var a in datas) {
+    if (datas[a].day === day) {
+      data=datas[a];
+      break;
+    }
+  }
+
   if(oldAuthor!=="" && oldText!==""){
     // отредактированная запись
     // var elem = datas.find(elem=>elem.day===day)
     var newDatas=[];
     datas.map(data=>{
       var newMeet=[];
-      data.meet.find(elem=>{
-        if(!(elem.text===oldText && elem.author===oldAuthor)){
-          newMeet.push(elem)
+      for (var a in data.meet){
+        if(!(data.meet[a].text===oldText && data.meet[a].author===oldAuthor)){
+          newMeet.push(data.meet[a])
         }else{
           newMeet.push({ text, author })
         }
-        return false;
-      });
+        break;
+      }
       newDatas.push({day:data.day, meet:newMeet})
       return false;
     })
@@ -79,12 +87,12 @@ export function del(text, author, day){
   var newDatas=[];
   datas.map(data=>{
     var newMeet=[];
-    data.meet.find(elem=>{
-      if(!(elem.text===text && elem.author===author)){
-        newMeet.push(elem)
+    for (var a in data.meet){
+      if(!(data.meet[a].text===text && data.meet[a].author===author)){
+        newMeet.push(data.meet[a])
       }
-      return false;
-    })
+      break;
+    }
     if(newMeet.length>0)newDatas.push({day:data.day, meet:newMeet})
     return false;
   })
