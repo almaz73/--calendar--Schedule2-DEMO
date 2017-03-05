@@ -42,16 +42,19 @@ class Calendar extends Component {
             var
               day = elem.day,
               dayText = moment(new Date(day)).format('D'),
-              busy = elem.busy;
+              busy = elem.busy,
+              today = moment(new Date()).format('MMMM D YYYY')===day,
+              classToday = today?"today":"";
 
             if(dayText==="1"){
-              black=!black?true:false;
+              black=!black?true:false;        // соседние месяцы блеклые
             }
+            classToday  += black?" black":""; // сегодняшний день желтый
 
             return(
               <div key={index}>
               <div
-                className={black?"black":""}
+                className={classToday}
                 title={day}
                 onClick={self.onChoiseDate.bind(self, day)}
               >
@@ -59,7 +62,7 @@ class Calendar extends Component {
 
               </div>
               {busy?<span className="dot"></span>:""}
-              {dayPoint===day?<span className="circle"></span>:""}
+              {dayPoint===day?<span className="circle active"></span>:<span className="circle"></span>}
               </div>
             )
           })

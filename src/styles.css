@@ -71,8 +71,8 @@ body {
 
 }
 
-.calendar-title .month{
-  margin-top:-3px;
+.calendar-title .month {
+    margin-top: -3px;
 }
 
 .calendar-title .leftBt {
@@ -127,7 +127,6 @@ body {
 
 .calendar-table DIV {
     display: inline-block;
-    border-radius: 42px;
     width: 43px;
     height: 41px;
     text-align: center;
@@ -136,8 +135,8 @@ body {
     line-height: 37px;
 }
 
-.calendar-table DIV:hover {
-    background: #ffe;
+.calendar-table DIV .today {
+    background: url(./images/yel.png) no-repeat 10px 5px;
 }
 
 .calendar-table .black {
@@ -145,7 +144,7 @@ body {
     color: black;
 }
 
-.calendar-table  DIV .dot {
+.calendar-table DIV .dot {
     position: absolute;
     width: 4px;
     height: 4px;
@@ -155,7 +154,7 @@ body {
     margin-top: 32px;
 }
 
-.calendar-table DIV .circle {
+.calendar-table DIV .circle.active {
     position: absolute;
     width: 23px;
     height: 23px;
@@ -164,6 +163,11 @@ body {
     margin-left: -32px;
     margin-top: 6px;
     opacity: 0.15;
+    transition: opacity 0.3s linear;
+}
+
+.calendar-table DIV .circle {
+    opacity: 0;
 }
 
 .meet {
