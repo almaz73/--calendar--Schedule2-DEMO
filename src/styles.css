@@ -298,10 +298,10 @@ body {
 
 .edit-button.close {
     position: absolute;
-    font-size: 24px;
-    top: 23px;
-    right: 7px;
-    background: none;
+    border-radius:0;
+    top: 29px;
+    right: -23px;
+    background: url(./images/krest.png) no-repeat;
 }
 
 .edit-button.save {

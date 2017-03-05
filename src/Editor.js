@@ -73,7 +73,7 @@ class Editor extends Component {
           onChange={this.onCheck.bind(this)}
           value={areaText}
         />
-        <div className="edit-button close" onClick={this.props.changeMode}>X</div>
+        <div className="edit-button close" onClick={this.props.changeMode}></div>
         <div className="edit-button save" onClick={this.onSave.bind(this)}>SAVE</div>
         <div className="edit-button cancel" onClick={this.onCancel.bind(this)}>CANCEL</div>
       </form>
